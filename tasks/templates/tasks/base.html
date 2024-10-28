@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Task Management{% endblock %}</title>
+    <link href="{% static 'tasks/css/tasks.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div id="sidebar">
+        <h2>Task Management</h2>
+        <p>Manage and track your tasks efficiently.</p>
+    </div>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>

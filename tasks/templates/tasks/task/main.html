@@ -1,0 +1,11 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}Task Management{% endblock %}
+
+{% block content %}
+    <h1>Task Management</h1>
+    <ul>
+        <li><a href="{% url 'tasks:task_list' %}">View All Tasks</a></li>
+        <li><a href="{% url 'tasks:task_completed' %}">View Completed Tasks</a></li>
+    </ul>
+{% endblock %}

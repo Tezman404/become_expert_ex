@@ -1,0 +1,21 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}All Tasks{% endblock %}
+
+{% block content %}
+    <h1>All Tasks</h1>
+    {% for task in tasks %}
+        <div class="task-item">
+            <p><strong>عنوان:</strong> {{ task.title }} <a href="{% if task.is_completed %}{% url 'tasks:task_detail' task.id %}{% else %}{% url 'tasks:task_detail_all' task.id %}{% endif %}">(مشاهده)</a></p>
+            <p><strong>توضیحات:</strong> {{ task.description|truncatewords:20 }}</p>
+            <p><strong>وضعیت:</strong> <span class="status {% if task.is_completed %}completed{% else %}not_complete{% endif %}">{{ task.is_completed|yesno:"Completed,Pending" }}</span></p>
+            <p><strong>تاریخ ایجاد:</strong> {{ task.created_at }}</p>
+            <p><strong>آخرین به‌روزرسانی:</strong> {{ task.updated_at }}</p>
+        </div>
+    {% empty %}
+        <p>No tasks available.</p>
+    {% endfor %}
+
+    <!-- دکمه برگشت به صفحه اصلی -->
+    <a href="{% url 'tasks:task_main' %}" class="back-btn">Back to Main</a>
+{% endblock %}

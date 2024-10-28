@@ -1,0 +1,20 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}Completed Tasks{% endblock %}
+
+{% block content %}
+    <h1>Completed Tasks</h1>
+    {% for task in tasks %}
+        <h2>
+            <a href="{% url 'tasks:task_detail' task.id %}">{{ task.title }}</a>
+        </h2>
+        <p>{{ task.description|truncatewords:20 }}</p>
+        <p>Created at: {{ task.created_at }}</p>
+        <p>Updated at: {{ task.updated_at }}</p>
+    {% empty %}
+        <p>No completed tasks available.</p>
+    {% endfor %}
+
+    <!-- دکمه برگشت به صفحه اصلی -->
+    <a href="{% url 'tasks:task_main' %}">Back to Main</a>
+{% endblock %}
